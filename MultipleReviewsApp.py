@@ -48,6 +48,11 @@ class SentimentAnalysisApp:
 				# Provide download link to predictions
 				st.markdown(self.downloadPredictions(predictions, fileUpload.name), unsafe_allow_html=True)
 
+			except MemoryError:
+
+				# Display error message
+				st.error("Out of memory! Please reduce the number of comments in the uploaded file and try again!")
+
 			except:
 
 				# Display error message
