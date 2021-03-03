@@ -27,7 +27,7 @@ class SentimentAnalysisApp:
 
 			# try:
 			# Read comments into a dataframe
-			comments = pd.read_csv(fileUpload, usecols=["Comments"])
+			comments = pd.read_csv(fileUpload, usecols=["Comments"], encoding = "ISO-8859-1")
 
 			# start time
 			start_time = time.time()
