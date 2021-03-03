@@ -25,41 +25,41 @@ class SentimentAnalysisApp:
 		# Get predictions
 		if fileUpload and submit:
 
-			try:
-				# Read comments into a dataframe
-				comments = pd.read_csv(fileUpload, usecols=["Comments"])
+			# try:
+			# Read comments into a dataframe
+			comments = pd.read_csv(fileUpload, usecols=["Comments"])
 
-				# start time
-				start_time = time.time()
+			# start time
+			start_time = time.time()
 
-				with st.spinner('Predicting...'):
-					# Run predictions
-					predictions = self.classifier.predict(comments)
+			with st.spinner('Predicting...'):
+				# Run predictions
+				predictions = self.classifier.predict(comments)
 
-				# end time
-				end_time = time.time()
+			# end time
+			end_time = time.time()
 
-				# get time taken to finish predicting
-				prediction_time = end_time - start_time
+			# get time taken to finish predicting
+			prediction_time = end_time - start_time
 
-				# display time taken
-				st.success('Prediction(s) were successfully completed in {:.2f} s'.format(prediction_time))
+			# display time taken
+			st.success('Prediction(s) were successfully completed in {:.2f} s'.format(prediction_time))
 
-				# Provide download link to predictions
-				st.markdown(self.downloadPredictions(predictions, fileUpload.name), unsafe_allow_html=True)
+			# Provide download link to predictions
+			st.markdown(self.downloadPredictions(predictions, fileUpload.name), unsafe_allow_html=True)
 
-			except MemoryError:
+			# except MemoryError:
 
-				# Display error message
-				st.error("Out of memory! Please reduce the number of comments in the uploaded file and try again!")
+			# 	# Display error message
+			# 	st.error("Out of memory! Please reduce the number of comments in the uploaded file and try again!")
 
-			except:
+			# except:
 
-				# Display error message
-				st.error("Please ensure that the uploaded file has the following format!")
+			# 	# Display error message
+			# 	st.error("Please ensure that the uploaded file has the following format!")
 
-				# Show sample dataframe
-				st.dataframe(pd.DataFrame({"Comments":['sample review 1', 'sample review 2']}))
+			# 	# Show sample dataframe
+			# 	st.dataframe(pd.DataFrame({"Comments":['sample review 1', 'sample review 2']}))
 
 
 	@staticmethod
